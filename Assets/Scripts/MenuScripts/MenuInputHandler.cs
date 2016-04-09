@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class MenuInputHandler : MonoBehaviour {
@@ -7,7 +6,7 @@ public class MenuInputHandler : MonoBehaviour {
     private Canvas pauseMenu;
     private Canvas settingsMenu;
 
-    // Called on initialization.
+    // Use this for initialization.
     void Start () {
         settingsMenu = GameObject.Find("SettingsMenu").GetComponent<Canvas>();
         settingsMenu.enabled = false;
@@ -16,27 +15,32 @@ public class MenuInputHandler : MonoBehaviour {
         pauseMenu.enabled = false;
     }
 
-	// Update is called once per frame
+	// Update is called once per frame.
 	void Update () {
 
         if (Input.GetButtonUp("Pause"))
         {
             PauseHandler();
+            Debug.Log("Pause Button Pressed");
         }
     }
 
+    // Handles changing the currently active pause menus.
     void PauseHandler () {
         if (!pauseMenu.enabled && !settingsMenu.enabled && SceneManager.GetActiveScene().name != "MainMenu")
         {
             pauseMenu.enabled = true;
-        }
-        else if (pauseMenu.enabled)
-        {
-            pauseMenu.enabled = false;
+            Debug.Log("PauseMenu enabled");
         }
         else if (settingsMenu.enabled)
         {
             settingsMenu.enabled = false;
+            Debug.Log("SettingsMenu disabled");
+        }
+        else if (pauseMenu.enabled)
+        {
+            pauseMenu.enabled = false;
+            Debug.Log("PauseMenu disabled");
         }
     }
 }

@@ -22,8 +22,8 @@ public class MenuButtons : MonoBehaviour {
         GameObject settingsMenu = GameObject.Find("SettingsMenu");
         settingsMenu.GetComponent<Canvas>().enabled = true;
     }
-
-    public void LanButton() {
+    // Creates/Joins a lan game.
+    public void LanButton () {
         NetworkManager.singleton.StartClient();
         NetworkManager.singleton.StartHost();
     }
